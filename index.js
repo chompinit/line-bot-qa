@@ -246,78 +246,33 @@ function makeQuestionMenuFlex() {
  * 5) FLEX: ปุ่มหลังตอบคำถาม
  * =========================
  */
-function makeQuestionMenuFlex() {
+function makeSmallMenuButtonsFlex() {
   return {
     type: "flex",
-    altText: "เมนูคำถาม",
+    altText: "ตัวเลือก",
     contents: {
       type: "bubble",
       size: "kilo",
       body: {
         type: "box",
         layout: "vertical",
-        spacing: "md",
+        spacing: "sm",
         contents: [
-          { type: "text", text: "เลือกคำถามที่ต้องการ", weight: "bold", size: "lg" },
           {
-            type: "text",
-            text: "แตะที่กล่องสีเขียวเพื่อดูคำตอบทันที ✅",
-            size: "sm",
-            color: "#666666",
-            wrap: true,
-          },
-          { type: "separator" },
-
-          ...QA.map((item, idx) => ({
-            type: "box",
-            layout: "horizontal",
-            paddingAll: "14px",
-            cornerRadius: "14px",
-            backgroundColor: "#00C853",
-            spacing: "md",
+            type: "button",
+            style: "primary",
             action: {
               type: "postback",
-              data: `qa|show|${item.id}`,
-              displayText: item.question,
+              label: "กลับไปเมนูคำถาม",
+              data: "qa|menu",
+              displayText: "กลับไปเมนูคำถาม",
             },
-            contents: [
-              {
-                type: "box",
-                layout: "vertical",
-                width: "28px",
-                height: "28px",
-                cornerRadius: "14px",
-                backgroundColor: "#00A843",
-                justifyContent: "center",
-                alignItems: "center",
-                contents: [
-                  {
-                    type: "text",
-                    text: String(idx + 1),
-                    size: "sm",
-                    weight: "bold",
-                    color: "#FFFFFF",
-                  },
-                ],
-              },
-              {
-                type: "text",
-                text: item.question,
-                wrap: true,
-                flex: 1,
-                size: "sm",
-                weight: "bold",
-                color: "#FFFFFF",
-              },
-            ],
-          })),
+          },
         ],
       },
     },
   };
 }
-
-
 /**
  * =========================
  * 6) START SERVER
