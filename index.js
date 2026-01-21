@@ -246,43 +246,77 @@ function makeQuestionMenuFlex() {
  * 5) FLEX: ปุ่มหลังตอบคำถาม
  * =========================
  */
-function makeSmallMenuButtonsFlex() {
+function makeQuestionMenuFlex() {
   return {
     type: "flex",
-    altText: "ตัวเลือก",
+    altText: "เมนูคำถาม",
     contents: {
       type: "bubble",
       size: "kilo",
       body: {
         type: "box",
         layout: "vertical",
-        spacing: "sm",
+        spacing: "md",
         contents: [
+          { type: "text", text: "เลือกคำถามที่ต้องการ", weight: "bold", size: "lg" },
           {
-            type: "button",
-            style: "primary",
+            type: "text",
+            text: "แตะที่กล่องสีเขียวเพื่อดูคำตอบทันที ✅",
+            size: "sm",
+            color: "#666666",
+            wrap: true,
+          },
+          { type: "separator" },
+
+          ...QA.map((item, idx) => ({
+            type: "box",
+            layout: "horizontal",
+            paddingAll: "14px",
+            cornerRadius: "14px",
+            backgroundColor: "#00C853",
+            spacing: "md",
             action: {
               type: "postback",
-              label: "กลับไปเมนูคำถาม",
-              data: "qa|menu",
-              displayText: "กลับไปเมนูคำถาม",
+              data: `qa|show|${item.id}`,
+              displayText: item.question,
             },
-          },
-          {
-            type: "button",
-            style: "secondary",
-            action: {
-              type: "postback",
-              label: "เริ่มใหม่",
-              data: "qa|restart",
-              displayText: "เริ่มใหม่",
-            },
-          },
+            contents: [
+              {
+                type: "box",
+                layout: "vertical",
+                width: "28px",
+                height: "28px",
+                cornerRadius: "14px",
+                backgroundColor: "#00A843",
+                justifyContent: "center",
+                alignItems: "center",
+                contents: [
+                  {
+                    type: "text",
+                    text: String(idx + 1),
+                    size: "sm",
+                    weight: "bold",
+                    color: "#FFFFFF",
+                  },
+                ],
+              },
+              {
+                type: "text",
+                text: item.question,
+                wrap: true,
+                flex: 1,
+                size: "sm",
+                weight: "bold",
+                color: "#FFFFFF",
+              },
+            ],
+          })),
         ],
       },
     },
   };
 }
+
 
 /**
  * =========================
