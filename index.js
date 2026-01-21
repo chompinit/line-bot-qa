@@ -224,17 +224,7 @@ function makeQuestionMenuFlex() {
     },
   ],
 })),
-          { type: "separator" },
-          {
-            type: "button",
-            style: "secondary",
-            action: {
-              type: "postback",
-              label: "เริ่มใหม่",
-              data: "qa|restart",
-              displayText: "เริ่มใหม่",
-            },
-          },
+  
         ],
       },
     },
